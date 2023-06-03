@@ -16,12 +16,12 @@ async function toggleTodo(id: string, complete: boolean) {
 }
 
 // server function that deletes todo in the DB
-// async function deleteTodo(id: string) {
-//     // next js directive to use server side
-//     "use server";
+async function deleteTodo(id: string) {
+    // next js directive to use server side
+    "use server";
 
-//     await prisma.todo.delete({ where: { id } });
-// }
+    await prisma.todo.delete({ where: { id } });
+}
 
 export default async function Home() {
     const todos = await getTodos();
@@ -42,7 +42,7 @@ export default async function Home() {
                         key={todo.id}
                         {...todo}
                         toggleTodo={toggleTodo}
-                        // deleteTodo={deleteTodo}
+                        deleteTodo={deleteTodo}
                     />
                 ))}
             </ul>

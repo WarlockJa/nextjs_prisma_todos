@@ -8,26 +8,26 @@ type TodoItemProps = {
     title: string;
     complete: boolean;
     toggleTodo: (id: string, complete: boolean) => void;
-    // deleteTodo: (id: string) => void;
+    deleteTodo: (id: string) => void;
 };
 
 // refreshing the client page after SSR delete todo
-// const handleDeleteTodo = async (
-//     id: string,
-//     deleteTodo: (id: string) => void,
-//     router: AppRouterInstance
-// ) => {
-//     await deleteTodo(id);
-//     router.refresh();
-// };
+const handleDeleteTodo = async (
+    id: string,
+    deleteTodo: (id: string) => void,
+    router: AppRouterInstance
+) => {
+    await deleteTodo(id);
+    router.refresh();
+};
 
 export default function TodoItem({
     id,
     title,
     complete,
     toggleTodo,
-}: // deleteTodo,
-TodoItemProps) {
+    deleteTodo,
+}: TodoItemProps) {
     const router = useRouter();
     return (
         <li className="flex gap-1 items-center">
@@ -44,12 +44,12 @@ TodoItemProps) {
             >
                 {title}
             </label>
-            {/* <button
-        className="border border-slate-300 text-slate-300 px-2 py-1 rounded hover:bg-slate-700 focus-within:bg-slate-700 outline-none"
-        onClick={() => handleDeleteTodo(id, deleteTodo, router)}
-      >
-        Delete
-      </button> */}
+            <button
+                className="border border-slate-300 text-slate-300 px-2 py-1 rounded hover:bg-slate-700 focus-within:bg-slate-700 outline-none"
+                onClick={() => handleDeleteTodo(id, deleteTodo, router)}
+            >
+                Delete
+            </button>
         </li>
     );
 }
